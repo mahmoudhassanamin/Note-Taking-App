@@ -1,10 +1,19 @@
 import './App.css';
-import Home from './pages/Home/Home';
+import ListAllNotes from './pages/ListAllNotes/ListAllNotes';
+import AddNewNote from "./pages/AddNewNote/AddNewNote";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Nav from './components/Nav/Nav';
+
+
 function App() {
   return (
-    <>
-     <Home/> 
-    </>
+    <BrowserRouter>
+      <Nav/>
+      <Routes>
+        <Route path="/listAllNotes" element={<ListAllNotes />} />
+        <Route path="/addNote" element={<AddNewNote />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

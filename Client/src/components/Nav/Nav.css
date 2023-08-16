@@ -1,0 +1,15 @@
+.navBar{
+    background-color: #DAC0A3;
+    position: sticky;
+    top:0;
+    padding-left: 1%;
+}
+
+.navBar a{
+    color: rgb(0, 0, 0);
+}
+
+.nav-link:hover{
+    color: rgb(0, 0, 0) !important;
+    border: 0px solid transparent !important;
+}

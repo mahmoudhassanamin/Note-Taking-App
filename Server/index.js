@@ -1,10 +1,28 @@
 const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
+const { connectToDB } = require("./config");
+const routesHandler = require("./routes");
+const { CORS } = require("./middlewares");
 
 const app = express();
-app.use(express.json());
-app.use(()=>{console.log("hereeee")})
-app.use(cors({ origin: "http://localhost:3001" }));
 
-app.listen(process.env.PORT, () => { console.log("The server is running") });
+app.use(express.json());
+
+app.use(CORS);
+
+app.use("/api", routesHandler);
+
+app.use("*", (req, res, next) => {
+  next("page not found");
+});
+
+app.use((err, req, res, next) => {
+  let status, msg;
+  res.status(status || 500).json({ error: msg || err });
+});
+
+connectToDB().then(() => {
+  app.listen(process.env.PORT || 3001, () => {
+    console.log("The server is running");
+  });
+});
