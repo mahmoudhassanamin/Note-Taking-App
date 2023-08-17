@@ -1,8 +1,9 @@
 .note{
+    position: relative;
     width: 40%;
     min-height: 20vh;
     max-height: 20vh;
-    border: 1px solid #EADBC8;
+
     overflow: hidden;
     border-radius: 1vw;
     padding:0 2%;
@@ -17,4 +18,43 @@
 
 .date{
     font-size: 0.7vw;
+}
+
+.removeImg{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 3vw;
+    background-color: white;
+    border-top:1px solid #f7cf98 ;
+    border-left:1px solid #f7cf98 ;
+    border-radius: 50% 0 0 0 ;
+}
+
+.showNoteDetails{
+    position: fixed;
+    z-index: 1;
+    top: 10vh;
+    left: 0.5vw;
+    width: 98vw;
+    height: 85vh;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.258);
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+.updateNoteForm{
+    background-color:#f8f0e5 !important;
+     margin-top: 1% !important;
+}
+
+.exitImg{
+    position: fixed;
+    right: 2vw;
+    top: 12vh;
+    width: 2vw;
+    cursor: pointer;
 }

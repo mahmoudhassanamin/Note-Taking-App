@@ -30,6 +30,15 @@ const getNoteById = async (req, res, next) => {
      });
    }, next);
 }
+const getNoteByTitle = async (req, res, next) => {
+  tryCatchWrapper(async () => {
+    const { search } = req.query;
+    const note = await noteModel.find({ title: search });
+    res.status(200).json({
+      data: note || {},
+    });
+  }, next);
+};
 
 const deleteNote = async (req, res, next) => {
    tryCatchWrapper(async () => {
@@ -49,7 +58,7 @@ const updateNote = async (req, res, next) => {
        params: { id },
        body: newNoteData,
      } = req;
-     const note = await noteModel.findByIdAndUpdate(id, newNoteData);
+     const note = await noteModel.findByIdAndUpdate(id, newNoteData,{new:true});
      res.status(201).json({
        data: note,
      });
@@ -60,6 +69,7 @@ module.exports = {
   getAllNotes,
   createNewNote,
   getNoteById,
+  getNoteByTitle,
   deleteNote,
   updateNote,
 };

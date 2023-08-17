@@ -1,5 +1,6 @@
 .form{
     width: 60vw !important;
+    height: fit-content;
     background-color:#f8f0e5be;
     padding: 2%;
     border-radius: 1vw;
@@ -10,13 +11,14 @@
     margin-top: 1%;
 }
 .textArea{
-    min-height: 40vh !important;
+    min-height: 35vh !important;
+    max-height: 35vh !important;
 }
 
 
 .btn {
  display: inline-block;
- padding: 0.9rem 1.8rem;
+ padding: 0.2rem 1.2rem;
  font-size: 1.2vw !important;
  font-weight: bold !important;
  color: black !important;
@@ -51,4 +53,34 @@
 
 .h2{
     border-bottom: 1px solid black;
+}
+
+.noteNotCreated{
+    display: none;
+}
+.notecreated{
+    display: block;
+    position: fixed;
+    font-size: 3vw;
+    text-align: center;
+    z-index: 4;
+    width: 30vw;
+    height: 10vh;
+    border-radius: 1vw;
+    background-color: #DAC0A3;
+    top: 45vh;
+    left: 35vw;
+    animation: notecreated ease-in 2.5s;
+}
+
+@keyframes notecreated {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1
+    }
+    100%{
+        opacity: 0
+    }
 }
