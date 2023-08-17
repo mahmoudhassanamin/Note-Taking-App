@@ -6,6 +6,7 @@ import "./ListAllNotes.css";
 import AddNewNote from "../AddNewNote/AddNewNote";
 
 function ListAllNotes({ searchNoteTitle }) {
+  
   const [allNotes, setAllNotes] = useState([]);
   const [hasServerError, setHasServerError] = useState(false);
    const [noteIsCreated, setNoteIsCreated] = useState(false);
@@ -17,8 +18,6 @@ function ListAllNotes({ searchNoteTitle }) {
     index:undefined,
   });
   
- 
-
   useEffect(() => {
     console.log(searchNoteTitle);
     backEndAxiosInstance
@@ -28,7 +27,9 @@ function ListAllNotes({ searchNoteTitle }) {
           : "/v1/notes"
       )
       .then((res) => {
+        console.log("here");
         setAllNotes([...res.data.data]);
+        
       })
       .catch((err) => {
         setAllNotes([
@@ -40,6 +41,7 @@ function ListAllNotes({ searchNoteTitle }) {
           },
         ]);
       });
+    
   }, [searchNoteTitle]);
 
   const showNoteDetails = (id,title, content ,index) => {

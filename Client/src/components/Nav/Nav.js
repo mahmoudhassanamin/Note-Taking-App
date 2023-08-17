@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
     const searchHandler = (e) => {
       e.preventDefault();
+      setSearchNote("");
       navigate(`/search?search=${searchNote}`)
     };
   return (
@@ -31,6 +32,7 @@ import { useNavigate } from "react-router-dom";
               className="serchInput"
               type="search"
               placeholder="Search by note's title"
+              value={searchNote}
               onChange={(e) => setSearchNote(e.target.value)}
             />
             <button type="submit" className="serchButton">
