@@ -15,6 +15,7 @@ const validationSchema = Yup.object({
 function AddNewNote({ title, content, buttonText, submitHandler, classes }) {
   const [noteIsCreated, setNoteIsCreated] = useState(false);
   const [hasServerError, setHasServerError] = useState(false);
+  const [direction, setDirection] = useState(false);
 
   const initialValues = {
     title: title || "",
@@ -51,29 +52,52 @@ function AddNewNote({ title, content, buttonText, submitHandler, classes }) {
 
   return (
     <>
-      <form className={"form " + classes} onSubmit={formik.handleSubmit} onClick={e=>e.stopPropagation()}>
+      <form
+        className={"form " + classes}
+        onSubmit={formik.handleSubmit}
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="h2">Add New Note</h2>
         <div className="form-group">
           <label htmlFor="Title">Title</label>
+          <div className=" d-inline d-flex float-end">
+            <p>En</p>
+            <label className="switch m-1">
+              <input
+                type="checkbox"
+                onClick={(e) => setDirection(e.target.checked)}
+              />
+              <span className="slider"></span>
+            </label>
+            <p>Ar</p>
+          </div>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${direction && "directionAr"}`}
             id="Title"
-            placeholder="Enter your note's title"
+            placeholder={`${
+              direction ? "أدخل عنوان الملاحظة" : "Enter your note's title"
+            }`}
             {...formik.getFieldProps("title")}
           />
+
           {formik.errors.title && formik.touched.title && (
             <p className="text-danger">{formik.errors.title}</p>
           )}
         </div>
 
         <div className="form-group">
-          <label htmlFor="Content">Note Content</label>
+          <label htmlFor="Content" className=" d-inline">
+            Note Content
+          </label>
+
           <textarea
-            className="form-control textArea"
+            className={`form-control textArea ${direction && "directionAr"}`}
             id="Content"
             rows="10"
-            placeholder="Enter your note"
+            placeholder={`${
+              direction ? "أدخل محتوي الملاحظة" : "Enter your note"
+            }`}
             {...formik.getFieldProps("content")}
           ></textarea>
           {formik.errors.content && formik.touched.content && (
